@@ -13,7 +13,7 @@ ca = certifi.where()
 import pandas as pd
 import numpy as np
 import pymongo
-from network_security.exception.exception import NetwrokSecurityException
+from network_security.exception.exception import NetworkSecurityException
 from network_security.Logging.logger import logging
 
 class NetworkDataExtract():
@@ -21,7 +21,7 @@ class NetworkDataExtract():
         try:
             pass
         except Exception as e:
-            raise NetwrokSecurityException(e,sys)
+            raise NetworkSecurityException(e,sys)
         
     def cv_to_json_convertor(self, file_path):
         try:
@@ -30,7 +30,7 @@ class NetworkDataExtract():
             records = list(json.loads(data.T.to_json()).values())
             return records
         except Exception as e:
-            raise NetwrokSecurityException(e,sys)
+            raise NetworkSecurityException(e,sys)
     
     def insert_data_mongodb(self, records, database, collection):
         try:
@@ -45,7 +45,7 @@ class NetworkDataExtract():
             self.collection.insert_many(self.records)
             return (len(self.records))
         except Exception as e:
-            raise NetwrokSecurityException(e,sys)
+            raise NetworkSecurityException(e,sys)
         
 if __name__== "__main__":
     FILE_PATH = "Network_Data\phisingData.csv"
